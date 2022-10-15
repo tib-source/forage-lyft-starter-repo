@@ -5,16 +5,20 @@ from engine.capulet_engine import CapuletEngine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
 from battery.spindler_battery import SpindlerBattery
+from serviceable import Serviceable
 
 
-class Car(ABC):
+class Car(Serviceable):
     def __init__(self, engine, battery):
-        engine = engine
-        battery = battery
+        self.engine = engine
+        self.battery = battery
 
-    @abstractmethod
     def needs_service(self):
-        pass
+        engine_service = self.engine.needs_service()
+        battery_service = self.battery.needs_service()
+        # could use a conditional statement to display which one needs service
+
+        return engine_service or battery_service
 
 
 class CarFactory:
