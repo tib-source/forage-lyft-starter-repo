@@ -1,6 +1,6 @@
 from abc import ABC
 
-from Engine import Engine
+from .Engine import Engine
 
 
 class CapuletEngine(Engine, ABC):
