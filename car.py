@@ -4,6 +4,8 @@ from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
 from battery.spindler_battery import SpindlerBattery
 from serviceable import Serviceable
+from tyre.carrigan import Carrigan
+from tyre.octoprime import Octoprime
 
 
 class Car(Serviceable):
@@ -26,16 +28,21 @@ class CarFactory:
         pass
 
     def create_calliope(last_service_date, current_mileage, last_service_mileage, sensor_array):
-        return Car(engine=CapuletEngine(current_mileage, last_service_mileage), battery=SpindlerBattery(last_service_date))
+        tires = Carrigan(sensor_array)
+        return Car(engine=CapuletEngine(current_mileage, last_service_mileage), battery=SpindlerBattery(last_service_date), tyre=tires)
 
     def create_glissade(last_service_date, current_mileage, last_service_mileage, sensor_array):
-        return Car(engine=WilloughbyEngine(current_mileage, last_service_mileage), battery=SpindlerBattery(last_service_date))
+        tires = Carrigan(sensor_array)
+        return Car(engine=WilloughbyEngine(current_mileage, last_service_mileage), battery=SpindlerBattery(last_service_date), tyre=tires)
 
     def create_palindrome(last_service_date, warning_light_is_on, sensor_array):
-        return Car(engine=SternmanEngine(warning_light_is_on), battery=SpindlerBattery(last_service_date))
+        tires = Octoprime(sensor_array)
+        return Car(engine=SternmanEngine(warning_light_is_on), battery=SpindlerBattery(last_service_date), tyre=tires)
 
     def create_rorschach(last_service_date, current_mileage, last_service_mileage,  sensor_array):
-        return Car(engine=WilloughbyEngine(current_mileage, last_service_mileage), battery=NubbinBattery(last_service_date))
+        tires = Octoprime(sensor_array)
+        return Car(engine=WilloughbyEngine(current_mileage, last_service_mileage), battery=NubbinBattery(last_service_date), tyre=tires)
 
     def create_thovex(last_service_date, current_mileage, last_service_mileage, sensor_array):
-        return Car(engine=CapuletEngine(current_mileage, last_service_mileage), battery=NubbinBattery(last_service_date))
+        tires = Carrigan(sensor_array)
+        return Car(engine=CapuletEngine(current_mileage, last_service_mileage), battery=NubbinBattery(last_service_date), tyre=tires)
